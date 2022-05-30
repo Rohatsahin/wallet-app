@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: wallet-service
+  lifecycle:
+    timeout-per-shutdown-phase: 10s
+
+server:
+  port: 8080
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+      group:
+        readiness:
+          include: readinessState
+        liveness:
+          include: livenessState
+      probes:
+        enabled: true
+  health:
+    diskspace:
+      enabled: false
+
+test:
+  userWalletId: "test-123e4567-e89b-42d3-a456-556642440000"
+
